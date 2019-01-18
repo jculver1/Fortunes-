@@ -5,8 +5,7 @@ const data = require('./data.json')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
-var urlencodedParser = bodyParser.urlencoded({extended: false});
-
+app.use(bodyParser.json())
 
 app.use(cors())
 
@@ -27,7 +26,7 @@ app.get('/:month', (req, res, next) => {
     }
 })
 
-app.post('/', urlencodedParser,(req, res) => {
+app.post('/', (req, res) => {
     res.send(req.body)
     console.log(req.body)
 })
