@@ -3,6 +3,10 @@ const app = express()
 const port = 3000
 const data = require('./data.json')
 const cors = require('cors')
+const bodyParser = require('body-parser')
+
+var urlencodedParser = bodyParser.urlencoded({extended: false});
+
 
 app.use(cors())
 
@@ -23,9 +27,9 @@ app.get('/:month', (req, res, next) => {
     }
 })
 
-app.post('/post', (req, res) => {
-    res.send(req)
-    console.log(req)
+app.post('/', urlencodedParser,(req, res) => {
+    res.send(req.body)
+    console.log(req.body)
 })
 
 app.use((req, res, next) => {
